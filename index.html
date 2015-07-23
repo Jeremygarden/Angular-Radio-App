@@ -8,17 +8,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-	    <script src="js/vendor/angular.min.js"></script>
+	    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
     </head>
     <body ng-controller="PlayerController">
-		<ul id="programs_list" class="">
+		<ul id="channels_list" class="">
 		   <li ng-repeat="channel in channels" ng-click="play(channel)">
-		     <span class="large-12">{{ channel.title.$text }}</span>
+		     <a href="" class="large-12">{{ channel.title.$text }}</a>
 		   </li> 
 		</ul>
         <script src="js/main.js"></script>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</scripopent>
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script>
