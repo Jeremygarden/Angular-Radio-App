@@ -4,24 +4,6 @@ var app = angular.module('radioApp',[]);
 var apiKey ='MDE5OTQzNDg5MDE0Mzc1MTMxOThlNzM0NA001',
     nprUrl = 'http://api.npr.org/query?id=61&fields=relatedLink,title,byline,text,audio,image,pullQuote,all&output=JSON';
 
-
-
-//audio  service
-
-app.factory('audio', ['$document', function($document) {
-  var audio = $document[0].createElement('audio');
-  return audio;
-}]);
-
-
-
-
-//cleasing the controller context
-app.controller('PlayerController', ['$scope', '$http', 'audio',
-  function($scope, $http, audio) {
-  $scope.audio = audio;
-
-
 app.controller('PlayerController', function($scope, $http) {
   var audio = document.createElement('audio');
   $scope.audio = audio;
