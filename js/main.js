@@ -24,32 +24,35 @@ app.factory('player', ['audio', function(audio) {
 }]);
 
 
-/*app.controller('PlayerController', function($scope, $http) {
-  var audio = document.createElement('audio');
-  $scope.audio = audio;
-  $http({
-	method: 'JSONP',
-	url: nprUrl + '&apiKey=' + apiKey + '&callback=JSON_CALLBACK'
-	}).success(function(data, status) {
+app.factory('player', ['audio', function(audio) {
+  var player = {
+    playing: false,
+    current: null,
+    ready: false,
 
-  $scope.channels = data.list.story;
-	}).error(function(data, status) {
+    play: function(program) {
+      // If we are playing, stop the current playback
+      if (player.playing) player.stop();
+      var url = program.audio[0].format.mp4.$text; // from the npr API
+      player.current = program; // Store the current program
+      audio.src = url;
+      audio.play(); // Start playback of the url
+      player.playing = true
+    },
 
-	});
-
-  $scope.play = function(channel) {
-    if ($scope.playing) $scope.audio.pause();
-    var url = channel.audio[0].format.mp4.$text;
-    $scope.audio.src = url;
-    $scope.audio.play();
-    $scope.playing = true;
+    stop: function() {
+      if (player.playing) {
+        audio.pause(); // stop playback
+        // Clear the state of the player
+        player.ready = player.playing = false; 
+        player.current = null;
+      }
+    }
   };
+  return player;
+}]);
 
-
-
-});
-*/
-
-app.controller('RelatedCtrl', ['$scope', function($scope){
-	
+app.controller('PlayerController', ['$scope', 'player',
+  function($scope, player) {
+  $scope.player = player;
 }]);
