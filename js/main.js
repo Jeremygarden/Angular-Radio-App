@@ -4,7 +4,27 @@ var app = angular.module('radioApp',[]);
 var apiKey ='MDE5OTQzNDg5MDE0Mzc1MTMxOThlNzM0NA001',
     nprUrl = 'http://api.npr.org/query?id=61&fields=relatedLink,title,byline,text,audio,image,pullQuote,all&output=JSON';
 
-app.controller('PlayerController', function($scope, $http) {
+
+
+
+app.factory('audio', ['$document', function($document) {
+  var audio = $document[0].createElement('audio');
+  return audio;
+}]);
+
+
+app.controller('PlayerController', ['$scope', '$http', 'audio',
+  function($scope, $http, audio) {
+  $scope.audio = audio;
+
+
+app.factory('player', ['audio', function(audio) {
+  var player = {};
+  return player;
+}]);
+
+
+/*app.controller('PlayerController', function($scope, $http) {
   var audio = document.createElement('audio');
   $scope.audio = audio;
   $http({
@@ -28,7 +48,7 @@ app.controller('PlayerController', function($scope, $http) {
 
 
 });
-
+*/
 
 app.controller('RelatedCtrl', ['$scope', function($scope){
 	
